@@ -1,0 +1,24 @@
+# This script will check if virus definition update under 7 days.
+# Change the 7 number  according to your standard.
+# Bellow 7 days virus definition will mark as Compaint
+
+try {
+$path = $((Get-Wmiobject Win32_Service | where-Object {$_.Name -eq "WinDefend"}).Pathname) -replace "MsMpEng.exe", "" -replace "'", "" 
+& "$Path\MpCmdRun.exe" -SignatureUpdate -mmpc
+
+Start-Sleep 10
+
+ If ((Get-MPComputerStatus).AntispywareSignatureAge -le 7 )
+  {
+ Write-Host "Compliant"
+  }
+  else 
+  {
+ Write-Host "Not Compliant"
+  }
+ }
+
+Catch 
+{
+Write-Host "Not Compiant Failure"
+}

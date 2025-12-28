@@ -1,0 +1,12 @@
+# This script will check if virus definition update under 7 days.
+# Change the 7 number according to your standard.
+# Bellow 7 days virus definition will mark as Compaint
+
+If ((Get-MPComputerStatus).AntispywareSignatureAge -le 7)
+{
+Write-Host "Compliant"
+}
+else 
+{
+Write-Host "Not Compliant"
+}

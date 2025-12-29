@@ -9,7 +9,7 @@ $path = $((Get-Wmiobject Win32_Service | where-Object {$_.Name -eq "WinDefend"})
 
 Start-Sleep 10
 
- If ((Get-MPComputerStatus).AntispywareSignatureAge -le 7 )
+ If ((Get-MPComputerStatus).AntispywareSignatureAge -le 5 )
   {
  Write-Host "Compliant"
   }
